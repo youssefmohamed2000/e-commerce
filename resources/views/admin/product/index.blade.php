@@ -60,7 +60,7 @@
                                             </td>
                                             <td>
                                                 <a type="button"
-                                                   href="{{ route('admin.products.attributes', $product->slug) }}"
+                                                   href="{{ route('admin.products.attributes.index', $product->slug) }}"
                                                    class="btn btn-warning"><i class="fa fa-plus"></i> Attr</a>
                                                 <a type="button"
                                                    href="{{ route('admin.products.edit', $product->slug) }}"

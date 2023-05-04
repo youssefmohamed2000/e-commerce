@@ -123,6 +123,8 @@
                                             placeholder="Confirm Password" required>
                                     </fieldset>
                                     <input type="submit" class="btn btn-sign" value="Register" name="register">
+                                    <a class="link-function left-position" href="{{ route('login') }}"
+                                        title="Forgotten password?">already have an account?</a>
                                 </form>
                             </div>
                         </div>

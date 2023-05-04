@@ -26,12 +26,12 @@
                                     <p class="row-in-form">
                                         <label for="name">Name<span>*</span></label>
                                         <input type="text" name="name" placeholder="Enter Your Name"
-                                               value="{{$user_profile->user->name}}">
+                                               value="{{$user_profile->user->name}}" required>
                                     </p>
                                     <p class="row-in-form">
                                         <label for="email">Email Addreess:<span>*</span></label>
                                         <input type="email" name="email" placeholder="Enter Your Email"
-                                               value="{{$user_profile->user->email}}">
+                                               value="{{$user_profile->user->email}}" required>
                                     </p>
                                     <p class="row-in-form">
                                         <label for="mobile">Mobile Number</label>

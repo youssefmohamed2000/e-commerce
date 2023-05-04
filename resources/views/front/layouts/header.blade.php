@@ -82,7 +82,16 @@
                                 src="{{ asset('assets/images/logo-top-1.png') }}" alt="mercado"></a>
                     </div>
 
-                    @livewire('header-search')
+                    <div class="wrap-search center-section">
+                        <div class="wrap-search-form">
+                            <form action="{{route('shop')}}" method="GET" id="form-search-top" name="form-search-top">
+                                <input type="text" name="search" placeholder="Search Products here..."/>
+                                <button form="form-search-top" type="submit">
+                                    <i class="fa fa-search" aria-hidden="true"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
 
                     <div class="wrap-icon right-section">
                         @livewire('wishlist-count')

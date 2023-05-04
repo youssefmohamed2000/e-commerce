@@ -41,8 +41,8 @@
                                         <div class="form-group">
                                             <label>Name</label>
                                             <input type="text" class="form-control" value="{{ $sub_category->name }}"
-                                                   name="name" placeholder="Enter Name">
-                                            <input type="hidden" value="{{ $sub_category->id }}" name="sub_id">
+                                                   name="name" placeholder="Enter Name" required>
+
                                         </div>
                                         <div class="form-group">
                                             <label>Parent Category</label>
@@ -71,8 +71,7 @@
                                         <div class="form-group">
                                             <label>Name</label>
                                             <input type="text" class="form-control" value="{{ $category->name }}"
-                                                   name="name" placeholder="Enter Name">
-                                            <input type="hidden" value="{{ $category->id }}" name="id">
+                                                   name="name" placeholder="Enter Name" required>
                                         </div>
                                     </div>
                                     <!-- /.card-body -->

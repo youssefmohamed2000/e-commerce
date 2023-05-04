@@ -35,15 +35,15 @@
                                     <div class="form-group">
                                         <label>Title</label>
                                         <input type="text" class="form-control" {{ old('title') }} name="title"
-                                            placeholder="Enter Title">
+                                            placeholder="Enter Title" required>
                                     </div>
                                     <div class="form-group">
                                         <label>Image</label>
-                                        <input type="file" class="form-control" name="image">
+                                        <input type="file" class="form-control" name="image" required>
                                     </div>
                                     <div class="form-group">
                                         <label>Status</label>
-                                        <select name="status" class="form-control">
+                                        <select name="status" class="form-control" required>
                                             <option disabled selected>Choose One</option>
                                             <option value="1">Active</option>
                                             <option value="0">Inactive</option>

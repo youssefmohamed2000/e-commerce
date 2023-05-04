@@ -37,65 +37,61 @@
                                     <div class="form-group">
                                         <label>Email</label>
                                         <input type="email" class="form-control" value="{{$setting->email}}"
-                                               name="email"
-                                               placeholder="Enter Email">
+                                               name="email" placeholder="Enter Email" required>
                                     </div>
 
                                     <div class="form-group">
                                         <label>Phone</label>
                                         <input type="number" class="form-control" value="{{$setting->phone}}"
-                                               name="phone"
-                                               placeholder="Enter Phone Number">
+                                               name="phone" placeholder="Enter Phone Number" required>
                                     </div>
 
                                     <div class="form-group">
                                         <label>Phone 2</label>
                                         <input type="number" class="form-control" value="{{$setting->phone2}}"
-                                               name="phone2"
-                                               placeholder="Enter Phone Number">
+                                               name="phone2" placeholder="Enter Phone Number" required>
                                     </div>
 
                                     <div class="form-group">
                                         <label>Address</label>
                                         <input type="text" class="form-control" value="{{$setting->address}}"
-                                               name="address"
-                                               placeholder="Enter Address">
+                                               name="address" placeholder="Enter Address" required>
                                     </div>
 
                                     <div class="form-group">
                                         <label>Map</label>
                                         <input type="text" class="form-control" value="{{$setting->map}}" name="map"
-                                               placeholder="Enter Map">
+                                               placeholder="Enter Map" required>
                                     </div>
 
                                     <div class="form-group">
                                         <label>Twitter Link</label>
                                         <input type="text" class="form-control" value="{{$setting->twitter}}"
-                                               name="twitter">
+                                               name="twitter" required>
                                     </div>
 
                                     <div class="form-group">
                                         <label>Facebook Link</label>
                                         <input type="text" class="form-control" value="{{$setting->facebook}}"
-                                               name="facebook">
+                                               name="facebook" required>
                                     </div>
 
                                     <div class="form-group">
                                         <label>Pinterest Link</label>
                                         <input type="text" class="form-control" value="{{$setting->pinterest}}"
-                                               name="pinterest">
+                                               name="pinterest" required>
                                     </div>
 
                                     <div class="form-group">
                                         <label>Instagram Link</label>
                                         <input type="text" class="form-control" value="{{$setting->instagram}}"
-                                               name="instagram">
+                                               name="instagram" required>
                                     </div>
 
                                     <div class="form-group">
                                         <label>Youtube Link</label>
                                         <input type="text" class="form-control" value="{{$setting->youtube}}"
-                                               name="youtube">
+                                               name="youtube" required>
                                     </div>
 
                                 </div>

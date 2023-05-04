@@ -12,7 +12,8 @@
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Home</a></li>
-                            <li class="breadcrumb-item active"><a href="{{ route('admin.coupons.index') }}">Coupons</a></li>
+                            <li class="breadcrumb-item active"><a href="{{ route('admin.coupons.index') }}">Coupons</a>
+                            </li>
                             <li class="breadcrumb-item active">Create</li>
                         </ol>
                     </div>
@@ -36,11 +37,11 @@
                                     <div class="form-group">
                                         <label>Coupon Code</label>
                                         <input type="text" class="form-control" {{ old('code') }} name="code"
-                                            placeholder="Enter Code">
+                                               placeholder="Enter Code" required>
                                     </div>
                                     <div class="form-group">
                                         <label>Coupon Type</label>
-                                        <select name="type" class="form-control">
+                                        <select name="type" class="form-control" required>
                                             <option selected disabled>Choose One ......</option>
                                             <option value="fixed">Fixed</option>
                                             <option value="percent">Percent</option>
@@ -49,17 +50,18 @@
                                     <div class="form-group">
                                         <label>Coupon Value</label>
                                         <input type="number" class="form-control" {{ old('value') }} name="value"
-                                            min="0" step="0.01" placeholder="Enter Coupon Value">
+                                               min="0" step="0.01" placeholder="Enter Coupon Value" required>
                                     </div>
                                     <div class="form-group">
                                         <label>Cart Value</label>
                                         <input type="number" class="form-control" {{ old('cart_value') }} min="0"
-                                            step="0.01" placeholder="Enter Cart Value" name="cart_value">
+                                               step="0.01" placeholder="Enter Cart Value" name="cart_value" required>
                                     </div>
 
                                     <div class="form-group">
                                         <label>Expiry Date</label>
-                                        <input type="text" class="form-control" name="expiry_date" id="expiry-date">
+                                        <input type="text" class="form-control" name="expiry_date" id="expiry-date"
+                                               required>
                                     </div>
                                 </div>
                                 <!-- /.card-body -->
@@ -79,11 +81,11 @@
 @endsection
 @section('scripts')
     <script>
-        $(function() {
+        $(function () {
             $('#expiry-date').datetimepicker({
-                    format: 'Y-MM-DD'
-                })
-                .on('dp.change', function(ev) {
+                format: 'Y-MM-DD'
+            })
+                .on('dp.change', function (ev) {
 
                 });
         });

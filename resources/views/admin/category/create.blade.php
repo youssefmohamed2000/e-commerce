@@ -37,7 +37,7 @@
                                     <div class="form-group">
                                         <label>Name</label>
                                         <input type="text" class="form-control" {{ old('name') }} name="name"
-                                               placeholder="Enter Name">
+                                               placeholder="Enter Name" required>
                                     </div>
                                     <div class="form-group">
                                         <label>Parent Category</label>

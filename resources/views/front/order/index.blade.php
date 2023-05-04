@@ -61,9 +61,11 @@
                                                     </td>
                                                 </tr>
                                             @empty
-                                                <h4>Your Orders list is Empty Go <a href="{{ route('shop') }}">Shop Now</a>
-                                                    to make New Orders
-                                                </h4>
+                                                <tr>
+                                                    <h4>Your Orders list is Empty Go <a href="{{ route('shop') }}">Shop Now</a>
+                                                        to make New Orders
+                                                    </h4>
+                                                </tr>
                                             @endforelse
                                         </tbody>
                                     </table>

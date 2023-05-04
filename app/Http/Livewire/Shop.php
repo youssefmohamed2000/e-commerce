@@ -4,6 +4,8 @@ namespace App\Http\Livewire;
 
 use App\Models\Category;
 use App\Models\Product;
+use Illuminate\Contracts\View\View;
+use Illuminate\Support\Collection;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Gloudemans\Shoppingcart\Facades\Cart;
@@ -13,34 +15,54 @@ class Shop extends Component
 {
     use WithPagination;
 
-    protected $paginationTheme = 'bootstrap';
+    protected string $paginationTheme = 'bootstrap';
 
-    public $popular_products;
-    public $sorting;
-    public $pageSize;
-    public $category;
-    public $sub_category_id;
-    public $price;
+    public Collection $popular_products;
+    public string $sorting;
+    public int $pageSize;
+    public int $category_id;
+    public int $sub_category_id;
+    public int $price_range;
+    public string $search;
 
     public function mount()
     {
-        $this->sorting = 'default';
+        $this->sorting = '';
         $this->pageSize = 12;
-        $this->category = 'All Categories';
-        $this->sub_category_id = null;
-        $this->price = 'all';
+        $this->category_id = 0;
+        $this->sub_category_id = 0;
+        $this->price_range = 0;
+
+        if (request()->has('search')) {
+            $this->search = request()->search;
+        } else {
+            $this->search = '';
+        }
     }
+
+
+    public function filter(): array
+    {
+        return [
+            'category_id' => $this->category_id,
+            'name' => $this->search,
+        ];
+    } // end of filter
 
 
     public function store($product_id, $product_name, $product_price)
     {
-        Cart::instance('cart')->add($product_id, $product_name, 1, $product_price)->associate(Product::class);
+        Cart::instance('cart')
+            ->add($product_id, $product_name, 1, $product_price)
+            ->associate(Product::class);
         $this->emitTo('cart-count', 'refreshComponent');
     }
 
     public function addToWishlist($product_id, $product_name, $product_price)
     {
-        Cart::instance('wishlist')->add($product_id, $product_name, 1, $product_price)->associate(Product::class);
+        Cart::instance('wishlist')
+            ->add($product_id, $product_name, 1, $product_price)
+            ->associate(Product::class);
         $this->emitTo('wishlist-count', 'refreshComponent');
     }
 
@@ -54,118 +76,66 @@ class Shop extends Component
         }
     }
 
-    public function categoryId($category_name, $sub_category_id = null)
+    public function getCategoryId($id)
     {
-        if ($category_name == 'all') {
-            $this->category = 'All Categories';
-        }
-        $this->category = DB::table('categories')->where('name', $category_name)->value('id');
-        $this->sub_category_id = $sub_category_id;
-    }
+        $this->category_id = (int) $id;
+    } // end of getCategoryId
 
-    public function priceFilter($query)
+    public function getSubCategoryId($id)
     {
-        if ($this->price == 50) {
-            $query->where('regular_price', '<=', 50);
-        } elseif ($this->price == 100) {
-            $query->where('regular_price', '<=', 100)
-                ->where('regular_price', '>=', 50);
-        } elseif ($this->price == 150) {
-            $query->where('regular_price', '<=', 150)
-                ->where('regular_price', '>=', 100);
-        } elseif ($this->price == 200) {
-            $query->where('regular_price', '<=', 150)
-                ->where('regular_price', '>=', 200);
-        } elseif ($this->price == 201) {
-            $query->where('regular_price', '>', 200);
-        }
-    }
+        $this->sub_category_id = (int) $id;
+    } // end of getCategoryId
 
-    public function render()
+    public function getPriceRange($products)
     {
-        if ($this->category !== null && $this->category !== 'All Categories') {
-            $category_name = Category::query()->where('id', $this->category)->value('name');
-            if ($this->sorting == 'newest') {
-                $products = Product::query()
-                    ->where('category_id', $this->category)
-                    ->where(function ($query) {
-                        if ($this->sub_category_id !== null) {
-                            $query->where('subcategory_id', $this->sub_category_id);
-                        }
-                    })->where(function ($query) {
-                        $this->priceFilter($query);
-                    })->orderBy('created_at', 'DESC')
-                    ->paginate($this->pageSize);
-            } elseif ($this->sorting == 'price') {
-                $products = Product::query()
-                    ->where('category_id', $this->category)
-                    ->where(function ($query) {
-                        if ($this->sub_category_id !== null) {
-                            $query->where('subcategory_id', $this->sub_category_id);
-                        }
-                    })->where(function ($query) {
-                        $this->priceFilter($query);
-                    })->orderBy('regular_price', 'ASC')
-                    ->paginate($this->pageSize);
-            } elseif ($this->sorting == 'price-desc') {
-                $products = Product::query()
-                    ->where('category_id', $this->category)
-                    ->where(function ($query) {
-                        if ($this->sub_category_id !== null) {
-                            $query->where('subcategory_id', $this->sub_category_id);
-                        }
-                    })->where(function ($query) {
-                        $this->priceFilter($query);
-                    })->orderBy('regular_price', 'DESC')
-                    ->paginate($this->pageSize);
-            } else {
-                $products = Product::query()
-                    ->where('category_id', $this->category)
-                    ->where(function ($query) {
-                        if ($this->sub_category_id !== null) {
-                            $query->where('subcategory_id', $this->sub_category_id);
-                        }
-                    })->where(function ($query) {
-                        $this->priceFilter($query);
-                    })->paginate($this->pageSize);
-            }
-        } else {
-            $category_name = 'All Categories';
-            if ($this->sorting == 'newest') {
-                $products = Product::query()
-                    ->where(function ($query) {
-                        $this->priceFilter($query);
-                    })
-                    ->orderBy('created_at', 'DESC')
-                    ->paginate($this->pageSize);
-            } elseif ($this->sorting == 'price') {
-                $products = Product::query()
-                    ->where(function ($query) {
-                        $this->priceFilter($query);
-                    })
-                    ->orderBy('regular_price', 'ASC')
-                    ->paginate($this->pageSize);
-            } elseif ($this->sorting == 'price-desc') {
-                $products = Product::query()
-                    ->where(function ($query) {
-                        $this->priceFilter($query);
-                    })
-                    ->orderBy('regular_price', 'DESC')
-                    ->paginate($this->pageSize);
-            } else {
-                $products = Product::query()
-                    ->where(function ($query) {
-                        $this->priceFilter($query);
-                    })
-                    ->paginate($this->pageSize);
-            }
+        return match ($this->price_range) {
+            50 => $products->where('regular_price', '<=', 50),
 
-        }
+            100 => $products->where('regular_price', '<=', 100)
+                ->where('regular_price', '>=', 50),
+
+            150 => $products->where('regular_price', '<=', 150)
+                ->where('regular_price', '>=', 100),
+
+            200 => $products->where('regular_price', '<=', 150)
+                ->where('regular_price', '>=', 200),
+
+            201 => $products->where('regular_price', '>', 200),
+            default => $products->inRandomOrder(),
+        };
+    } // end of getCategoryId
+
+    public function sortBy($products)
+    {
+        return match ($this->sorting) {
+            'newest' => $products->orderByDesc('created_at'),
+            'price' => $products->orderBy('regular_price'),
+            'price-desc' => $products->orderByDesc('regular_price'),
+            default => $products->inRandomOrder(),
+        };
+    } // end of sortBy
+
+    public function result()
+    {
+        $products = Product::query()
+            ->filter($this->filter());
+
+        return $this->sortBy($this->getPriceRange($products))
+            ->paginate($this->pageSize);
+    } // end of result
+
+
+    public function render(): View
+    {
         if (auth()->check()) {
             Cart::instance('cart')->store(auth()->user()->email);
             Cart::instance('wishlist')->store(auth()->user()->email);
         }
 
-        return view('livewire.shop', ['products' => $products, 'category_name' => $category_name]);
+        return view('livewire.shop',
+            /*['products' => $products, 'category_name' => $category_name]*/
+            [
+                'products' => $this->result(),
+            ]);
     }
 }

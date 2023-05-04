@@ -2,11 +2,9 @@
 
 namespace App\Http\Requests;
 
-use App\Models\Coupon;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
-class UpdateCouponRequest extends FormRequest
+class UpdateSaleRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,12 +24,8 @@ class UpdateCouponRequest extends FormRequest
     public function rules()
     {
         return [
-
-            'code' => ['required', Rule::unique('coupons', 'code')->ignore($this->slug, 'slug')],
-            'type' => 'required',
-            'value' => 'required|numeric',
-            'cart_value' => 'required|numeric',
-            'expiry_date' => 'required'
+            'sale_date' => 'required|date',
+            'status' => 'required|boolean'
         ];
     }
 }

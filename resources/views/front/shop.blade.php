@@ -32,26 +32,6 @@
             integrity="sha512-1mDhG//LAjM3pLXCJyaA+4c+h5qmMoTc7IuJyuNNPaakrWT9rVTxICK4tIizf7YwJsXgDC2JP74PGCc7qxLAHw=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-    {{-- <script>
-        var slider = document.getElementById('slider');
-        noUiSlider.create(slider, {
-            start: [1, 100],
-            connect: true,
-            range: {
-                'min': 0,
-                'max': 1000
-            },
-            pips: {
-                mode: 'steps',
-                stepped: true,
-                density: 4
-            }
-        });
-        slider.noUiSlider.on('update', function(value) {
-            @this.set('min_price', value[0]);
-            @this.set('max_price', value[1]);
-        });
-    </script> --}}
 @endsection
 @section('livewire-script')
     @livewireScripts

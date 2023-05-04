@@ -1,4 +1,58 @@
-@extends('layouts.app')
+@extends('front.layouts.index')
+@section('title')
+    <title>Confirm Password</title>
+@endsection
+
+@section('content')
+    <main id="main" class="main-site left-sidebar">
+
+        <div class="container">
+
+            <div class="wrap-breadcrumb">
+                <ul>
+                    <li class="item-link"><a href="{{ route('home') }}" class="link">Home</a></li>
+                    <li class="item-link"><span>Confirm Password</span></li>
+                </ul>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12 col-md-offset-3">
+                    <div class=" main-content-area">
+                        <div class="wrap-login-item ">
+                            <div class="login-form form-item form-stl">
+                                <form name="frm-login" method="POST" action="{{ route('password.confirm') }}">
+                                    @include('partials._errors')
+                                    @csrf
+                                    <fieldset class="wrap-title">
+                                        <h3 class="form-title">Confirm Password</h3>
+                                    </fieldset>
+                                    <fieldset class="wrap-input">
+                                        <label for="frm-reg-pass">Password</label>
+                                        <input type="password" class="form-control @error('password') is-invalid @enderror"
+                                            id="password" name="password" placeholder="********" required>
+                                    </fieldset>
+
+                                    <button type="submit" class="btn btn-submit">
+                                        Confirm Password
+                                    </button>
+                                    @if (Route::has('password.request'))
+                                        <a class="link-function left-position" href="{{ route('password.request') }}"
+                                            title="Forgotten password?">Forgot Your Password?</a>
+                                    @endif
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end main products area-->
+                </div>
+            </div>
+
+        </div>
+    </main>
+@endsection
+
+
+{{-- @extends('layouts.app')
 
 @section('content')
 <div class="container">
@@ -46,4 +100,4 @@
         </div>
     </div>
 </div>
-@endsection
+@endsection --}}

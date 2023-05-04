@@ -6,7 +6,7 @@
             </a>
         </div>
         <div class="wrap-shop-control">
-            <h1 class="shop-title">{{ $category_name }}</h1>
+            <h1 class="shop-title">Shop Products</h1>
             <div class="wrap-right">
                 <div class="sort-item orderby">
                     <select name="sorting" class="use-chosen" wire:model="sorting">
@@ -18,7 +18,7 @@
                 </div>
 
                 <div class="sort-item orderby">
-                    <select name="price" class="use-chosen" wire:model="price">
+                    <select name="price_range" class="use-chosen" wire:model="price_range">
                         <option value="0" selected>All Prices</option>
                         <option value="50">$0.00 - $50.00</option>
                         <option value="100">$50.00 - $100.00</option>
@@ -132,15 +132,20 @@
                     </li>
                     @foreach (App\Models\Category::all() as $category)
                         <li class="category-item {{count($category->subCategories) > 0 ? 'has-child-cate' : ''}}">
+                            {{--<a href="#" class="filter-link"
+                               wire:click.prevent="categoryId('{{ $category->name }}')">{{ $category->name }}</a>--}}
                             <a href="#" class="filter-link"
-                               wire:click.prevent="categoryId('{{ $category->name }}')">{{ $category->name }}</a>
+                               wire:click.prevent="getCategoryId('{{ $category->id }}')">{{ $category->name }}</a>
                             @if(count($category->subCategories) > 0)
                                 <span class="toggle-control">+</span>
                                 <ul class="sub-cate">
                                     @foreach($category->subCategories as $sub)
                                         <li class="category-item">
-                                            <a href="#" class="cat-link"
+                                            {{--<a href="#" class="cat-link"
                                                wire:click.prevent="categoryId('{{ $category->name }}' , {{$sub->id}})"><i
+                                                    class="fa fa-caret-right"></i> {{$sub->name}}</a>--}}
+                                            <a href="#" class="cat-link"
+                                               wire:click.prevent="getSubCategoryId('{{$sub->id}})"><i
                                                     class="fa fa-caret-right"></i> {{$sub->name}}</a>
                                         </li>
                                     @endforeach

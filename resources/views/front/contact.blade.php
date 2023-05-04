@@ -23,19 +23,19 @@
                                 <form action="{{route('contact.store')}}" method="POST" name="frm-contact">
                                     @csrf
                                     <label for="name">Name<span>*</span></label>
-                                    <input type="text" value="{{$user->name}}" id="name" name="name">
+                                    <input type="text" value="{{$user->name}}" id="name" name="name" required>
                                     @error('name') <p class="text-danger">{{$message}}</p> @enderror
 
                                     <label for="email">Email<span>*</span></label>
-                                    <input type="text" value="{{$user->name}}" id="email" name="email">
+                                    <input type="text" value="{{$user->email}}" id="email" name="email" required>
                                     @error('email') <p class="text-danger">{{$message}} </p>@enderror
 
                                     <label for="phone">Number Phone</label>
-                                    <input type="text" value="" id="phone" name="phone">
+                                    <input type="text" value="" id="phone" name="phone" required>
                                     @error('phone') <p class="text-danger">{{$message}}</p> @enderror
 
                                     <label for="comment">Comment</label>
-                                    <textarea name="comment" id="comment"></textarea>
+                                    <textarea name="comment" id="comment" required></textarea>
                                     @error('comment') <p class="text-danger">{{$message}}</p> @enderror
 
                                     <input type="submit" name="ok" value="Submit">

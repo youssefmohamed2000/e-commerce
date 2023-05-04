@@ -1,5 +1,6 @@
 <?php
 
+use App\Events\OrderConfirmation;
 use App\Http\Controllers\Front\CartController;
 use App\Http\Controllers\Front\CheckoutController;
 use App\Http\Controllers\Front\ContactController;
@@ -13,14 +14,13 @@ use App\Http\Controllers\Front\ProductController;
 use App\Http\Controllers\Front\ReviewController;
 
 
-
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-Route::group(['middleware' => 'auth'] , function (){
+Route::group(['middleware' => 'auth'], function () {
 
     Route::resource('/profile', UserController::class)->only('index', 'edit', 'update')->middleware('auth');
 
@@ -39,11 +39,10 @@ Route::group(['middleware' => 'auth'] , function (){
 });
 
 // SHOP PAGE
-Route::get('/shop' , [ShopController::class , 'index'])->name('shop');
-//Route::view('/shop', 'front.shop')->name('shop');
+Route::get('/shop/{search?}', [ShopController::class, 'index'])->name('shop');
 
 // CART PAGE
-Route::get('/cart', [CartController::class , 'index'])->name('cart');
+Route::get('/cart', [CartController::class, 'index'])->name('cart');
 
 // WISHLIST PAGE
 Route::view('/wishlist', 'front.wishlist')->name('wishlist');

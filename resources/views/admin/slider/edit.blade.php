@@ -37,15 +37,15 @@
                                     <div class="form-group">
                                         <label>Title</label>
                                         <input type="text" class="form-control" value="{{ $slider->title }}"
-                                            name="title" placeholder="Enter Title">
+                                            name="title" placeholder="Enter Title" required>
                                     </div>
                                     <div class="form-group">
                                         <label>Image</label>
-                                        <input type="file" class="form-control" name="image">
+                                        <input type="file" class="form-control" name="image" required>
                                     </div>
                                     <div class="form-group">
                                         <label>Status</label>
-                                        <select name="status" class="form-control">
+                                        <select name="status" class="form-control" required>
                                             <option disabled selected>Choose One</option>
                                             <option value="1" {{ $slider->status == 1 ? 'selected' : '' }}>Active
                                             </option>

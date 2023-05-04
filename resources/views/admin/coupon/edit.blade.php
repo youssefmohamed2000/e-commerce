@@ -38,12 +38,11 @@
                                     <div class="form-group">
                                         <label>Coupon Code</label>
                                         <input type="text" class="form-control" value="{{ $coupon->code }}"
-                                            name="code" placeholder="Enter Code">
-                                        <input type="hidden" value="{{ $coupon->id }}" name="id">
+                                            name="code" placeholder="Enter Code" required>
                                     </div>
                                     <div class="form-group">
                                         <label>Coupon Type</label>
-                                        <select name="type" class="form-control">
+                                        <select name="type" class="form-control" required>
                                             <option disabled>Choose One ......</option>
                                             <option value="fixed" {{ $coupon->type == 'fixed' ? 'selected' : '' }}>fixed
                                             </option>
@@ -55,17 +54,17 @@
                                     <div class="form-group">
                                         <label>Coupon Value</label>
                                         <input type="number" class="form-control" value="{{ $coupon->value }}"
-                                            min="0" step="0.01" name="value">
+                                            min="0" step="0.01" name="value" required>
                                     </div>
                                     <div class="form-group">
                                         <label>Cart Value</label>
                                         <input type="number" class="form-control" value="{{ $coupon->cart_value }}"
-                                            min="0" step="0.01" name="cart_value">
+                                            min="0" step="0.01" name="cart_value" required>
                                     </div>
                                     <div class="form-group">
                                         <label>Expiry Date</label>
                                         <input type="text" class="form-control" value="{{ $coupon->expiry_date }}"
-                                            name="expiry_date" id="expiry-date">
+                                            name="expiry_date" id="expiry-date" required>
                                     </div>
                                 </div>
                                 <!-- /.card-body -->

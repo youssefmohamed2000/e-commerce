@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\ProductAttributeRequest;
+use App\Models\AttributeValue;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\ProductAttribute;
@@ -136,10 +138,57 @@ class ProductController extends Controller
         return redirect()->route('admin.products.index');
     }
 
-    public function attributes($slug)
+    public function showAttributes($product_slug)
     {
-        $product = Product::query()->where('slug', $slug)->firstOrFail();
+        $product = Product::query()->where('slug', $product_slug)->firstOrFail();
         $attributes = ProductAttribute::all();
-        return view('admin.product.attribute', compact('product', 'attributes'));
+        return view('admin.product.attributes.index', compact('product', 'attributes'));
+    }
+
+    public function createAttributes($product_slug)
+    {
+        $product = Product::query()->where('slug', $product_slug)->firstOrFail();
+        $attributes = ProductAttribute::all();
+        return view('admin.product.attributes.create', compact('product', 'attributes'));
+    }
+
+    public function storeAttributes(ProductAttributeRequest $request, $product_slug)
+    {
+        $product = Product::query()->where('slug', $product_slug)->firstOrFail();
+        $validated = $request->safe();
+        AttributeValue::query()->create([
+            'product_attribute_id' => $validated['product_attribute_id'],
+            'value' => $validated['value'],
+            'product_id' => $product->id
+        ]);
+        return redirect()->route('admin.products.attributes.index', $product_slug);
+    }
+
+    public function editAttributes($product_slug, $id)
+    {
+        $product = Product::query()->where('slug', $product_slug)->firstOrFail();
+        $attribute_value = AttributeValue::query()->findOrFail($id);
+        $attributes = ProductAttribute::all();
+        return view('admin.product.attributes.edit', compact('product', 'attributes', 'attribute_value'));
+    }
+
+    public function updateAttributes(ProductAttributeRequest $request, $product_slug, $id)
+    {
+        $product = Product::query()->where('slug', $product_slug)->firstOrFail();
+        $attribute_value = AttributeValue::query()->findOrFail($id);
+        $validated = $request->safe();
+        $attribute_value->update([
+            'product_attribute_id' => $validated['product_attribute_id'],
+            'value' => $validated['value'],
+            'product_id' => $product->id
+        ]);
+        return redirect()->route('admin.products.attributes.index', $product_slug);
+    }
+
+    public function destroyAttributes($product_slug, $id)
+    {
+        $attribute_value = AttributeValue::query()->findOrFail($id);
+        $attribute_value->delete();
+        return redirect()->route('admin.products.attributes.index', $product_slug);
     }
 }

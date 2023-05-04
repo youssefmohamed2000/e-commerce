@@ -24,7 +24,7 @@
                                     <div class="billing-address">
                                         <p class="row-in-form">
                                             <label for="first_name">first name<span>*</span></label>
-                                            <input type="text" name="first_name" placeholder="Your first name">
+                                            <input type="text" name="first_name" placeholder="Your first name" required>
                                             @error('first_name')
                                             <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
@@ -33,7 +33,7 @@
                                         </p>
                                         <p class="row-in-form">
                                             <label for="last_name">last name<span>*</span></label>
-                                            <input type="text" name="last_name" placeholder="Your last name">
+                                            <input type="text" name="last_name" placeholder="Your last name" required>
                                             @error('last_name')
                                             <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
@@ -42,7 +42,8 @@
                                         </p>
                                         <p class="row-in-form">
                                             <label for="email">Email Addreess:<span>*</span></label>
-                                            <input type="email" name="email" placeholder="Type your email" value="{{$profile->user->email}}">
+                                            <input type="email" name="email" placeholder="Type your email"
+                                                   value="{{$profile->user->email}}" required>
                                             @error('email')
                                             <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
@@ -51,7 +52,8 @@
                                         </p>
                                         <p class="row-in-form">
                                             <label for="mobile">Phone number<span>*</span></label>
-                                            <input type="number" name="mobile" placeholder="10 digits format" value="{{$profile->mobile}}">
+                                            <input type="number" name="mobile" placeholder="10 digits format"
+                                                   value="{{$profile->mobile}}" required>
                                             @error('mobile')
                                             <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
@@ -60,7 +62,8 @@
                                         </p>
                                         <p class="row-in-form">
                                             <label for="add">Line1:<span>*</span></label>
-                                            <input type="text" name="line1" placeholder="Street at apartment number" value="{{$profile->line1}}">
+                                            <input type="text" name="line1" placeholder="Street at apartment number"
+                                                   value="{{$profile->line1}}" required>
                                             @error('line1')
                                             <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
@@ -69,11 +72,13 @@
                                         </p>
                                         <p class="row-in-form">
                                             <label for="add">Line2:</label>
-                                            <input type="text" name="line2" placeholder="Street at apartment number" value="{{$profile->line2}}">
+                                            <input type="text" name="line2" placeholder="Street at apartment number"
+                                                   value="{{$profile->line2}}">
                                         </p>
                                         <p class="row-in-form">
                                             <label for="country">Country<span>*</span></label>
-                                            <input type="text" name="country" placeholder="United States" value="{{$profile->country}}">
+                                            <input type="text" name="country" placeholder="United States"
+                                                   value="{{$profile->country}}" required>
                                             @error('country')
                                             <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
@@ -82,7 +87,8 @@
                                         </p>
                                         <p class="row-in-form">
                                             <label for="province">Province<span>*</span></label>
-                                            <input type="text" name="province" placeholder="Province" value="{{$profile->province}}">
+                                            <input type="text" name="province" placeholder="Province"
+                                                   value="{{$profile->province}}" required>
                                             @error('province')
                                             <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
@@ -91,7 +97,8 @@
                                         </p>
                                         <p class="row-in-form">
                                             <label for="city">Town / City<span>*</span></label>
-                                            <input type="text" name="city" placeholder="City name" value="{{$profile->city}}">
+                                            <input type="text" name="city" placeholder="City name"
+                                                   value="{{$profile->city}}" required>
                                             @error('city')
                                             <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
@@ -101,7 +108,7 @@
                                         <p class="row-in-form">
                                             <label for="zip-code">Postcode / ZIP:<span>*</span></label>
                                             <input type="number" name="zipcode" value="{{$profile->zipcode}}"
-                                                   placeholder="Your postal code">
+                                                   placeholder="Your postal code" required>
                                             @error('zipcode')
                                             <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>

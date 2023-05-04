@@ -46,6 +46,8 @@
                                         <a class="link-function left-position" href="{{ route('password.request') }}"
                                             title="Forgotten password?">Forgotten password?</a>
                                     </fieldset>
+                                    <a class="link-function left-position" href="{{ route('register') }}"
+                                        title="Forgotten password?">don't have an account?</a>
                                     <input type="submit" class="btn btn-submit" value="Login" name="submit">
                                 </form>
                             </div>

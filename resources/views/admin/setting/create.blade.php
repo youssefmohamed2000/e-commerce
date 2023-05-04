@@ -37,56 +37,56 @@
                                     <div class="form-group">
                                         <label>Email</label>
                                         <input type="email" class="form-control" {{ old('email') }} name="email"
-                                               placeholder="Enter Email">
+                                               placeholder="Enter Email"  required>
                                     </div>
 
                                     <div class="form-group">
                                         <label>Phone</label>
                                         <input type="number" class="form-control" {{ old('phone') }} name="phone"
-                                               placeholder="Enter Phone Number">
+                                               placeholder="Enter Phone Number" required>
                                     </div>
 
                                     <div class="form-group">
                                         <label>Phone 2</label>
                                         <input type="number" class="form-control" {{ old('phone2') }} name="phone2"
-                                               placeholder="Enter Phone Number">
+                                               placeholder="Enter Phone Number" required>
                                     </div>
 
                                     <div class="form-group">
                                         <label>Address</label>
                                         <input type="text" class="form-control" {{ old('address') }} name="address"
-                                               placeholder="Enter Address">
+                                               placeholder="Enter Address" required>
                                     </div>
 
                                     <div class="form-group">
                                         <label>Map</label>
                                         <input type="text" class="form-control" {{ old('map') }} name="map"
-                                               placeholder="Enter Map">
+                                               placeholder="Enter Map" required>
                                     </div>
 
                                     <div class="form-group">
                                         <label>Twitter Link</label>
-                                        <input type="text" class="form-control" {{ old('twitter') }} name="twitter">
+                                        <input type="text" class="form-control" {{ old('twitter') }} name="twitter" required>
                                     </div>
 
                                     <div class="form-group">
                                         <label>Facebook Link</label>
-                                        <input type="text" class="form-control" {{ old('facebook') }} name="facebook">
+                                        <input type="text" class="form-control" {{ old('facebook') }} name="facebook" required>
                                     </div>
 
                                     <div class="form-group">
                                         <label>Pinterest Link</label>
-                                        <input type="text" class="form-control" {{ old('pinterest') }} name="pinterest">
+                                        <input type="text" class="form-control" {{ old('pinterest') }} name="pinterest" required>
                                     </div>
 
                                     <div class="form-group">
                                         <label>Instagram Link</label>
-                                        <input type="text" class="form-control" {{ old('instagram') }} name="instagram">
+                                        <input type="text" class="form-control" {{ old('instagram') }} name="instagram" required>
                                     </div>
 
                                     <div class="form-group">
                                         <label>Youtube Link</label>
-                                        <input type="text" class="form-control" {{ old('youtube') }} name="youtube">
+                                        <input type="text" class="form-control" {{ old('youtube') }} name="youtube" required>
                                     </div>
 
                                 </div>

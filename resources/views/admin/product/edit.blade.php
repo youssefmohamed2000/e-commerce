@@ -44,7 +44,7 @@
                                     <div class="form-group">
                                         <label>Product Name</label>
                                         <input type="text" class="form-control" value=" {{ $product->name }}"
-                                               name="name" placeholder="Enter Product Name">
+                                               name="name" placeholder="Enter Product Name" required>
                                     </div>
                                     @livewire('admin.get-sub-categories' , ['categories' => $categories
                                     ,'category_id' => $product->category_id,
@@ -52,17 +52,17 @@
                                     <div class="form-group">
                                         <label>Short Description</label>
                                         <textarea class="form-control" name="short_description"
-                                                  placeholder="Enter Short Description">{{ $product->short_description }}</textarea>
+                                                  placeholder="Enter Short Description" required>{{ $product->short_description }}</textarea>
                                     </div>
                                     <div class="form-group">
                                         <label>Product Description</label>
                                         <textarea class="form-control" name="description"
-                                                  placeholder="Enter Product Description">{{ $product->description }}</textarea>
+                                                  placeholder="Enter Product Description" required>{{ $product->description }}</textarea>
                                     </div>
                                     <div class="form-group">
                                         <label>Regular Price</label>
                                         <input type="number" class="form-control" value="{{ $product->regular_price }}"
-                                               name="regular_price" placeholder="Enter Regular Price">
+                                               name="regular_price" placeholder="Enter Regular Price" required>
                                     </div>
                                     <div class="form-group">
                                         <label>Sale Price</label>
@@ -72,11 +72,11 @@
                                     <div class="form-group">
                                         <label>SKU</label>
                                         <input type="text" class="form-control" name="SKU"
-                                               value="{{ $product->SKU }}" placeholder="Enter SKU">
+                                               value="{{ $product->SKU }}" placeholder="Enter SKU" required>
                                     </div>
                                     <div class="form-group">
                                         <label>Stock</label>
-                                        <select name="stock_status" class="form-control">
+                                        <select name="stock_status" class="form-control" required>
                                             <option disabled selected>Choose One</option>
                                             <option value="instock"
                                                 {{ $product->stock_status == 'instock' ? 'selected' : '' }}>In Stock
@@ -100,7 +100,7 @@
                                     <div class="form-group">
                                         <label>Quantity</label>
                                         <input type="number" class="form-control" name="quantity"
-                                               value="{{ $product->quantity }}" placeholder="Enter Quantity">
+                                               value="{{ $product->quantity }}" placeholder="Enter Quantity" required>
                                     </div>
                                     <div class="form-group">
                                         <label>Product Image</label>

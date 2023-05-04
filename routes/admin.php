@@ -40,8 +40,21 @@ Route::group(['middleware' => 'auth:admin'], function () {
         'categories' => 'slug'
     ]);
 
+    // PRODUCTS Attributes ROUTES
+    Route::get('products/{product_slug}/attributes', [ProductController::class, 'showAttributes'])
+        ->name('products.attributes.index');
+    Route::get('products/{product_slug}/attributes/create', [ProductController::class, 'createAttributes'])
+        ->name('products.attributes.create');
+    Route::post('products/{product_slug}/attributes', [ProductController::class, 'storeAttributes'])
+        ->name('products.attributes.store');
+    Route::get('products/{product_slug}/attributes/{id}/edit', [ProductController::class, 'editAttributes'])
+        ->name('products.attributes.edit');
+    Route::put('products/{product_slug}/attributes/{id}', [ProductController::class, 'updateAttributes'])
+        ->name('products.attributes.update');
+    Route::delete('products/{product_slug}/attributes/{id}', [ProductController::class, 'destroyAttributes'])
+        ->name('products.attributes.destroy');
+
     // PRODUCTS ROUTES
-    Route::get('products/{slug}/attributes', [ProductController::class, 'attributes'])->name('products.attributes');
     Route::resource('/products', ProductController::class)->except('show')->parameters([
         'products' => 'slug'
     ]);

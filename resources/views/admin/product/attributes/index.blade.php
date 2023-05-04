@@ -26,7 +26,9 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-
+                                <a type="button"
+                                   href=" {{ route('admin.products.attributes.create' , $product->slug) }}"
+                                   class="btn  btn-info btn-lg">Add New</a>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body table-responsive p-0">
@@ -45,7 +47,20 @@
                                             <td>{{$product->name}}</td>
                                             <td>{{$item->productAttributes->name}}</td>
                                             <td>{{$item->value}}</td>
-                                            <td>dff</td>
+                                            <td>
+                                                <a type="button"
+                                                   href="{{ route('admin.products.attributes.edit', ['product_slug' =>$product->slug ,'id' => $item->id]) }}"
+                                                   class="btn btn-info"><i class="fa fa-edit"> Edit</i></a>
+                                                <button form="delete{{ $item->id }}" type="submit"
+                                                        class="btn btn-danger"
+                                                        onclick="return confirm('Are you sure you want to delete this item')">
+                                                    <i
+                                                        class="fa fa-trash"></i> Delete
+                                                </button>
+                                                <form id="delete{{ $item->id }}"
+                                                      action="{{ route('admin.products.attributes.destroy', ['product_slug' =>$product->slug ,'id' => $item->id]) }}"
+                                                      method="POST">@csrf @method('delete')</form>
+                                            </td>
                                         </tr>
                                     @empty
                                         <tr>

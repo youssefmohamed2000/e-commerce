@@ -43,23 +43,23 @@
                                     <div class="form-group">
                                         <label>Product Name</label>
                                         <input type="text" class="form-control" {{ old('name') }} name="name"
-                                               placeholder="Enter Product Name">
+                                               placeholder="Enter Product Name" required>
                                     </div>
                                     @livewire('admin.get-sub-categories' , ['categories'=> $categories])
                                     <div class="form-group">
                                         <label>Short Description</label>
                                         <textarea class="form-control" name="short_description"
-                                                  placeholder="Enter Short Description">{{ old('short_description') }}</textarea>
+                                                  placeholder="Enter Short Description" required>{{ old('short_description') }}</textarea>
                                     </div>
                                     <div class="form-group">
                                         <label>Product Description</label>
                                         <textarea class="form-control" name="description"
-                                                  placeholder="Enter Product Description">{{ old('description') }}</textarea>
+                                                  placeholder="Enter Product Description" required>{{ old('description') }}</textarea>
                                     </div>
                                     <div class="form-group">
                                         <label>Regular Price</label>
                                         <input type="number" class="form-control" {{ old('regular_price') }}
-                                        name="regular_price" placeholder="Enter Regular Price">
+                                        name="regular_price" placeholder="Enter Regular Price" required>
                                     </div>
                                     <div class="form-group">
                                         <label>Sale Price</label>
@@ -69,11 +69,11 @@
                                     <div class="form-group">
                                         <label>SKU</label>
                                         <input type="text" class="form-control" {{ old('SKU') }} name="SKU"
-                                               placeholder="Enter SKU">
+                                               placeholder="Enter SKU" required>
                                     </div>
                                     <div class="form-group">
                                         <label>Stock</label>
-                                        <select name="stock_status" class="form-control">
+                                        <select name="stock_status" class="form-control" required>
                                             <option disabled selected>Choose One</option>
                                             <option value="instock">In Stock</option>
                                             <option value="outofstock">Out Of Stock</option>
@@ -89,11 +89,11 @@
                                     <div class="form-group">
                                         <label>Quantity</label>
                                         <input type="number" class="form-control" {{ old('quantity') }} name="quantity"
-                                               placeholder="Enter Quantity">
+                                               placeholder="Enter Quantity" required>
                                     </div>
                                     <div class="form-group">
                                         <label>Product Image</label>
-                                        <input type="file" class="form-control" name="image">
+                                        <input type="file" class="form-control" name="image" required>
                                     </div>
                                     <div class="form-group">
                                         <label>Product Gallary</label>

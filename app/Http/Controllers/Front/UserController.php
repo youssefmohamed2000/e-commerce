@@ -15,12 +15,9 @@ class UserController extends Controller
 
     public function index()
     {
-        $user_profile = Profile::query()->where('user_id', auth()->user()->id)->first();
-        if (!$user_profile) {
-            Profile::query()->create([
-                'user_id' => auth()->user()->id
-            ]);
-        }
+        $user_profile = Profile::query()->where('user_id', auth()->user()->id)->firstOrCreate([
+            'user_id' => auth()->user()->id
+        ]);
         $total_purchase = Order::query()->where('status', '!=', 'canceled')
             ->where('user_id', $user_profile->user_id)
             ->count();

@@ -108,11 +108,17 @@
                                 <div class="tab-content-item " id="add_infomation">
                                     <table class="shop_attributes">
                                         <tbody>
-                                        <tr>
-                                            <th>Weight</th>
-                                            <td class="product_weight">1 kg</td>
-                                        </tr>
-                                        <tr>
+                                        @forelse($product->attributeValues as $value)
+                                            <tr>
+                                                <th>{{$value->productAttributes->name}}</th>
+                                                <td class="product_weight">{{$value->value}}</td>
+                                            </tr>
+                                        @empty
+                                            <tr>
+                                                No Information about this Product
+                                            </tr>
+                                        @endforelse
+                                        {{--<tr>
                                             <th>Dimensions</th>
                                             <td class="product_dimensions">12 x 15 x 23 cm</td>
                                         </tr>
@@ -121,7 +127,7 @@
                                             <td>
                                                 <p>Black, Blue, Grey, Violet, Yellow</p>
                                             </td>
-                                        </tr>
+                                        </tr>--}}
                                         </tbody>
                                     </table>
                                 </div>

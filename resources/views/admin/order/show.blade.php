@@ -71,23 +71,26 @@
                             <div class="card-body table-responsive p-0">
                                 <table class="table table-hover text-nowrap">
                                     <thead>
-                                        <tr>
-                                            <th>Product Image</th>
-                                            <th>Product name</th>
-                                            <th>Price</th>
-                                            <th>Quantity</th>
-                                            <th>Quantity</th>
-                                        </tr>
+                                    <tr>
+                                        <th>Product Image</th>
+                                        <th>Product name</th>
+                                        <th>Price</th>
+                                        <th>Quantity</th>
+                                        <th>Options</th>
+                                    </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($order->orderItems as $item)
-                                            <tr>
-                                                <td><img src="{{ $item->product->image }}" width="70"></td>
-                                                <td>{{ $item->product->name }}</td>
-                                                <td>${{ $item->price * $item->quantity }}</td>
-                                                <td>{{ $item->quantity }}</td>
-                                            </tr>
-                                        @endforeach
+                                    @foreach ($order->orderItems as $item)
+                                        <tr>
+                                            <td><img src="{{ $item->product->image }}" width="70"></td>
+                                            <td>{{ $item->product->name }}</td>
+                                            <td>${{ $item->price * $item->quantity }}</td>
+                                            <td>{{ $item->quantity }}</td>
+                                            <td>
+                                                {{(unserialize($item->options))}}
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                     </tbody>
                                 </table>
                             </div>
